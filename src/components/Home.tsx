@@ -18,9 +18,6 @@ export default function Home({ currentUser, logout }: HomeProps) {
                     Welcome
                 </h3>
                 <p>This is my demo using React, TypeScript, Material-UI, Firebase authentication and React Routing</p>
-                <h4>Todos</h4>
-                    <p>Pre-populate update fields</p>
-                    <p>Feedback on use</p>
             </div>
             <Box
                 component="form"
