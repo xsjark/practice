@@ -16,13 +16,15 @@ import {
   collection,
   where,
   addDoc,
-  deleteDoc
+  deleteDoc,
+  updateDoc
 } from "firebase/firestore";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import Create from './components/Create';
 import Read from './components/Read';
 import Delete from './components/Delete';
+import Update from './components/Update';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -111,6 +113,20 @@ function App() {
       })
   }
 
+  const updateDocument = async (id: any) => {
+    updateDoc(doc(db, "practice_users", id), {
+      name: newName,
+      job: newJob
+    })
+      .then(() => {
+        console.log("Document has been updated successfully.")
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }
+
+
   // const googleProvider = new GoogleAuthProvider();
 
   // const signInWithGoogle = async () => {
@@ -141,7 +157,8 @@ function App() {
           <Route path='/register' element={<Form title="Register" setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction(2)} />} />
           <Route path='/create' element={<Create currentUser={() => currentUser()} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} createDocument={(e: any) => createDocument(e)} />} />
           <Route path='/read' element={<Read currentUser={() => currentUser()} navigate={() => navigate("/")} entries={entries} setEntries={setEntries} db={db} />} />
-          <Route path='/delete' element={<Delete currentUser={() => currentUser()} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} newId={newId} setNewId={setNewId} deleteDocument={deleteDocument} />} />
+          <Route path='/update' element={<Update currentUser={() => currentUser()} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} newId={newId} setNewId={setNewId} updateDocument={updateDocument} />} />
+          <Route path='/delete' element={<Delete currentUser={() => currentUser()} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} newId={newId} setNewId={setNewId} deleteDocument={deleteDocument}  />} />
         </Routes>
       </>
     </div>
