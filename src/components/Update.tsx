@@ -43,6 +43,7 @@ export default function Update({ currentUser, navigate, newId, setNewId, setNewN
                 <TextField id="email" label="Enter Job" variant="outlined" onChange={(e) => setNewJob(e.target.value)}/>
 
             </Box>
+            <Link to="/" style={{ textDecoration: 'none', marginRight: 5 }}><Button variant="contained">Home</Button></Link>
             <BasicButton title="Update" handleAction={updateDocument(newId)} />
 
         </div>

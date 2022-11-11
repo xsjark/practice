@@ -53,7 +53,7 @@ export default function Read({ currentUser, navigate, entries, setEntries, db }:
                 </h3>
                 <p>Read all entries in DB</p>
             </div>
-            <div style={{margin: 'auto', width: 'fit-content'}}>
+            <div style={{margin: 'auto', width: 'fit-content', marginBottom: 10}}>
             <TableContainer component={Paper}>
                 <Table  aria-label="simple table">
                     <TableHead>
@@ -77,6 +77,7 @@ export default function Read({ currentUser, navigate, entries, setEntries, db }:
                 </Table>
             </TableContainer>
             </div>
+            <Link to="/" style={{ textDecoration: 'none' }}><Button variant="contained">Home</Button></Link>
         </div>
     );
 }

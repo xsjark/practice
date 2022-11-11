@@ -41,6 +41,7 @@ export default function Create({currentUser, navigate, setNewName, setNewJob, cr
                 <TextField id="password" label="Enter Job" variant="outlined" onChange={(e) => setNewJob(e.target.value)}/>
 
             </Box>
+            <Link to="/" style={{ textDecoration: 'none', marginRight: 5 }}><Button variant="contained">Home</Button></Link>
             <BasicButton title="Create" handleAction={createDocument} />
 
         </div>

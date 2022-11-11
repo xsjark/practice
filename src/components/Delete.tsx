@@ -41,6 +41,7 @@ export default function Delete({ currentUser, navigate, newId, setNewId, setNewN
                 <TextField id="email" label="Enter ID" variant="outlined" onChange={(e) => setNewId(e.target.value)}/>
 
             </Box>
+            <Link to="/" style={{ textDecoration: 'none', marginRight: 5 }}><Button variant="contained">Home</Button></Link>
             <BasicButton title="Delete" handleAction={deleteDocument(newId)} />
 
         </div>
