@@ -11,6 +11,7 @@ type HomeProps = {
 }
 
 export default function Home({ currentUser, logout }: HomeProps) {
+
     return (
         <div>
             <div className="heading-container">
@@ -28,7 +29,10 @@ export default function Home({ currentUser, logout }: HomeProps) {
                 autoComplete="off"
             >
                 {currentUser() 
-                ? <BasicButton title={"Logout"} handleAction={logout} /> 
+                ? <>
+                <Link to="/create" style={{ textDecoration: 'none' }}><Button variant="contained">Create DB entry</Button></Link>                
+                <BasicButton title={"Logout"} handleAction={logout} /> 
+                </>
                 : <>
                 <Link to="/login" style={{ textDecoration: 'none' }}><Button variant="contained">Log in</Button></Link>
                 <Link to="/register" style={{ textDecoration: 'none' }}><Button variant="contained">Register</Button></Link>

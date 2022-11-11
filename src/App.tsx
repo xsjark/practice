@@ -18,6 +18,7 @@ import {
 } from "firebase/firestore";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import Create from './components/Create';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -40,7 +41,11 @@ const db = getFirestore(app);
 
 function App() {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('')
+  const [password, setPassword] = useState('');
+
+  const [newName, setNewName] = useState('');
+  const [newJob, setNewJob] = useState('');
+
 
   const navigate = useNavigate();
 
@@ -49,14 +54,14 @@ function App() {
     if (id === 2) {
       createUserWithEmailAndPassword(authentication, email, password)
         .then((response) => {
-          navigate("/home")
+          navigate("/")
         })
     }
     if (id === 1) {
       try {
          signInWithEmailAndPassword(auth, email, password)
         .then((response) => {
-          navigate("/home")
+          navigate("/")
         })
       } catch (err) {
         console.error(err);
@@ -74,6 +79,20 @@ function App() {
     })
 
   };
+
+  const writeToDB = async (e: any) => {
+        e.preventDefault();  
+       
+        try {
+            const docRef = await addDoc(collection(db, "practice_users"), {
+              name: newName,
+              job: newJob,    
+            });
+            console.log("Document written with ID: ", docRef.id);
+          } catch (e) {
+            console.error("Error adding document: ", e);
+          }
+    }
 
   // const googleProvider = new GoogleAuthProvider();
 
@@ -95,15 +114,15 @@ function App() {
   //     console.error(err);
   //   }
   // };
+
   return (
     <div className="App">
-                  {/* {JSON.stringify(currentUser())} */}
-
-      <>
+         <>
         <Routes>
           <Route path='/' element={<Home currentUser={() => currentUser()} logout={() => logout()} />} />
           <Route path='/login' element={<Form title="Login" setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction(1)} />} />
           <Route path='/register' element={<Form title="Register" setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction(2)} />} />
+          <Route path='/create' element={<Create currentUser={() => currentUser()} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} writeToDB={(e: any) => writeToDB(e)}/>} />
         </Routes>
       </>
     </div>
