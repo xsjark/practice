@@ -7,14 +7,11 @@ import {
   useNavigate
 } from "react-router-dom";
 import { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
 import {
   doc,
   getFirestore,
-  query,
-  getDocs,
   collection,
-  where,
   addDoc,
   deleteDoc,
   updateDoc
@@ -25,10 +22,6 @@ import Create from './components/Create';
 import Read from './components/Read';
 import Delete from './components/Delete';
 import Update from './components/Update';
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBtdHOy5dVSddCRdz_mQmGgsMV2gLSsuAA",
   authDomain: "chakra-reservation.firebaseapp.com",
@@ -125,28 +118,6 @@ function App() {
         console.log(error);
       })
   }
-
-
-  // const googleProvider = new GoogleAuthProvider();
-
-  // const signInWithGoogle = async () => {
-  //   try {
-  //     const res = await signInWithPopup(auth, googleProvider);
-  //     const user = res.user;
-  //     const q = query(collection(db, "users"), where("uid", "==", user.uid));
-  //     const docs = await getDocs(q);
-  //     if (docs.docs.length === 0) {
-  //       await addDoc(collection(db, "users"), {
-  //         uid: user.uid,
-  //         name: user.displayName,
-  //         authProvider: "google",
-  //         email: user.email,
-  //       });
-  //     }
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
 
   return (
     <div className="App">
