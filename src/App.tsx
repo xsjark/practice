@@ -9,17 +9,20 @@ import {
 import { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import {
+  doc,
   getFirestore,
   query,
   getDocs,
   collection,
   where,
   addDoc,
+  deleteDoc
 } from "firebase/firestore";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import Create from './components/Create';
 import Read from './components/Read';
+import Delete from './components/Delete';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -46,6 +49,7 @@ function App() {
 
   const [entries, setEntries] = useState();
 
+  const [newId, setNewId] = useState('');
   const [newName, setNewName] = useState('');
   const [newJob, setNewJob] = useState('');
 
@@ -62,10 +66,10 @@ function App() {
     }
     if (id === 1) {
       try {
-         signInWithEmailAndPassword(auth, email, password)
-        .then((response) => {
-          navigate("/")
-        })
+        signInWithEmailAndPassword(auth, email, password)
+          .then((response) => {
+            navigate("/")
+          })
       } catch (err) {
         console.error(err);
       }
@@ -75,7 +79,7 @@ function App() {
   const currentUser = () => {
     return auth.currentUser;
   }
-  
+
   const logout = () => {
     signOut(auth).then((response) => {
       navigate("/")
@@ -84,18 +88,28 @@ function App() {
   };
 
   const createDocument = async (e: any) => {
-        e.preventDefault();  
-       
-        try {
-            const docRef = await addDoc(collection(db, "practice_users"), {
-              name: newName,
-              job: newJob,    
-            });
-            console.log("Document written with ID: ", docRef.id);
-          } catch (e) {
-            console.error("Error adding document: ", e);
-          }
+    e.preventDefault();
+
+    try {
+      const docRef = await addDoc(collection(db, "practice_users"), {
+        name: newName,
+        job: newJob,
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
     }
+  }
+
+  const deleteDocument = async (id: any) => {
+    deleteDoc(doc(db, "practice_users", id))
+      .then(() => {
+        console.log("Entire Document has been deleted successfully.")
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }
 
   // const googleProvider = new GoogleAuthProvider();
 
@@ -120,13 +134,14 @@ function App() {
 
   return (
     <div className="App">
-         <>
+      <>
         <Routes>
           <Route path='/' element={<Home currentUser={() => currentUser()} logout={() => logout()} />} />
           <Route path='/login' element={<Form title="Login" setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction(1)} />} />
           <Route path='/register' element={<Form title="Register" setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction(2)} />} />
-          <Route path='/create' element={<Create currentUser={() => currentUser()} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} createDocument={(e: any) => createDocument(e)}/>} />
+          <Route path='/create' element={<Create currentUser={() => currentUser()} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} createDocument={(e: any) => createDocument(e)} />} />
           <Route path='/read' element={<Read currentUser={() => currentUser()} navigate={() => navigate("/")} entries={entries} setEntries={setEntries} db={db} />} />
+          <Route path='/delete' element={<Delete currentUser={() => currentUser()} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} newId={newId} setNewId={setNewId} deleteDocument={deleteDocument} />} />
         </Routes>
       </>
     </div>

@@ -31,6 +31,7 @@ export default function Home({ currentUser, logout }: HomeProps) {
                 ? <>
                 <Link to="/create" style={{ textDecoration: 'none' }}><Button variant="contained">Create DB entry</Button></Link>                
                 <Link to="/read" style={{ textDecoration: 'none' }}><Button variant="contained">Read all DB entries</Button></Link>                
+                <Link to="/delete" style={{ textDecoration: 'none' }}><Button variant="contained">Delete a DB entry</Button></Link>                
                 <BasicButton title={"Logout"} handleAction={logout} /> 
                 </>
                 : <>
