@@ -4,14 +4,13 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
 
-
 type HomeProps = {
     currentUser: any,
     logout: any,
 }
 
 export default function Home({ currentUser, logout }: HomeProps) {
-
+    
     return (
         <div>
             <div className="heading-container">
@@ -31,6 +30,7 @@ export default function Home({ currentUser, logout }: HomeProps) {
                 {currentUser() 
                 ? <>
                 <Link to="/create" style={{ textDecoration: 'none' }}><Button variant="contained">Create DB entry</Button></Link>                
+                <Link to="/read" style={{ textDecoration: 'none' }}><Button variant="contained">Read all DB entries</Button></Link>                
                 <BasicButton title={"Logout"} handleAction={logout} /> 
                 </>
                 : <>

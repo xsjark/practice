@@ -10,10 +10,10 @@ type CreateProps = {
     navigate: any,
     setNewName: any,
     setNewJob: any,
-    writeToDB: any
+    createDocument: any
 }
 
-export default function Create({currentUser, navigate, setNewName, setNewJob, writeToDB}: CreateProps) {
+export default function Create({currentUser, navigate, setNewName, setNewJob, createDocument}: CreateProps) {
 
     useEffect(() => {
         if(!currentUser()) {
@@ -39,9 +39,9 @@ export default function Create({currentUser, navigate, setNewName, setNewJob, wr
             >
                 <TextField id="email" label="Enter Name" variant="outlined" onChange={(e) => setNewName(e.target.value)}/>
                 <TextField id="password" label="Enter Job" variant="outlined" onChange={(e) => setNewJob(e.target.value)}/>
-                <BasicButton title="Write" handleAction={writeToDB} />
 
             </Box>
+            <BasicButton title="Create" handleAction={createDocument} />
 
         </div>
     );
