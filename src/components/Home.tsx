@@ -13,11 +13,11 @@ export default function Home({ currentUser, logout }: HomeProps) {
     
     return (
         <div>
-            <div className="heading-container">
+            <div className="heading-container" >
                 <h3>
                     Welcome
                 </h3>
-                <p>This is my demo using React, TypeScript, Material-UI, Firebase authentication and React Routing</p>
+                <p style={{marginTop: 50, marginBottom: 50}}>This is my demo using React, TypeScript, Material-UI, Firebase authentication and React Routing</p>
             </div>
             <Box
                 component="form"
