@@ -125,7 +125,6 @@ function App() {
 
   return (
     <div className="App">
-      {email}{password}
       <>
         <Routes>
           <Route path='/' element={<Home currentUser={() => currentUser()} logout={() => logout()} />} />
