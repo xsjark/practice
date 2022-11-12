@@ -72,18 +72,16 @@ function App() {
           setEmail("")
           setPassword("")
         })
-    }
+        .catch(err => alert(err))
+    } 
     if (id === 1) {
-      try {
         signInWithEmailAndPassword(auth, email, password)
           .then((response) => {
             navigate("/")
             setEmail("")
             setPassword("")
           })
-      } catch (err) {
-        console.error(err);
-      }
+      .catch(err => alert(err))
     }
   }
 
