@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { TextField } from "@mui/material";
 
 type UpdateProps = {
-    currentUser: any,
+    loggedIn: boolean,
     navigate: Function,
     newId: string,
     setNewId: any,
@@ -15,10 +15,10 @@ type UpdateProps = {
     updateDocument: Function
 }
 
-export default function Update({ currentUser, navigate, newId, setNewId, setNewName, setNewJob, updateDocument}: UpdateProps) {
+export default function Update({ loggedIn, navigate, newId, setNewId, setNewName, setNewJob, updateDocument}: UpdateProps) {
     useEffect(() => {
-        if(!currentUser()) {
-            navigate()
+        if(!loggedIn) {
+            navigate("/")
         }
     })
 

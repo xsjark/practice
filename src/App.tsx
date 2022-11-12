@@ -16,12 +16,13 @@ import {
   deleteDoc,
   updateDoc
 } from "firebase/firestore";
-// Import the functions you need from the SDKs you need
+import { useEffect } from 'react';
 import { initializeApp } from "firebase/app";
 import Create from './components/Create';
 import Read from './components/Read';
 import Delete from './components/Delete';
 import Update from './components/Update';
+
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -32,7 +33,6 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID 
 }
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -41,13 +41,25 @@ const db = getFirestore(app);
 function App() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const [entries, setEntries] = useState();
-
   const [newId, setNewId] = useState('');
   const [newName, setNewName] = useState('');
   const [newJob, setNewJob] = useState('');
-
+  const [loggedIn, setLoggedIn] = useState(false)
+  
+    useEffect(() => {
+      const listener = auth.onAuthStateChanged((authUser) => {
+        if (authUser) {
+          localStorage.setItem('authUser', JSON.stringify(authUser));
+          setLoggedIn(true);
+        } else {
+          localStorage.removeItem('authUser');
+          setLoggedIn(false);
+        }
+      });
+  
+      return () => listener?.();
+    }, []);
 
   const navigate = useNavigate();
 
@@ -73,10 +85,6 @@ function App() {
         console.error(err);
       }
     }
-  }
-
-  const currentUser = () => {
-    return auth.currentUser;
   }
 
   const logout = () => {
@@ -127,13 +135,13 @@ function App() {
     <div className="App">
       <>
         <Routes>
-          <Route path='/' element={<Home currentUser={() => currentUser()} logout={() => logout()} />} />
+          <Route path='/' element={<Home loggedIn={loggedIn} logout={() => logout()} />} />
           <Route path='/login' element={<Form title="Login" setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction(1)} />} />
           <Route path='/register' element={<Form title="Register" setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction(2)} />} />
-          <Route path='/create' element={<Create currentUser={() => currentUser()} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} createDocument={() => createDocument()} />} />
-          <Route path='/read' element={<Read currentUser={() => currentUser()} navigate={() => navigate("/")} entries={entries} setEntries={setEntries} db={db} />} />
-          <Route path='/update' element={<Update currentUser={() => currentUser()} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} newId={newId} setNewId={setNewId} updateDocument={updateDocument} />} />
-          <Route path='/delete' element={<Delete currentUser={() => currentUser()} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} newId={newId} setNewId={setNewId} deleteDocument={deleteDocument}  />} />
+          <Route path='/create' element={<Create loggedIn={loggedIn} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} createDocument={() => createDocument()} />} />
+          <Route path='/read' element={<Read loggedIn={loggedIn} navigate={() => navigate("/")} entries={entries} setEntries={setEntries} db={db} />} />
+          <Route path='/update' element={<Update loggedIn={loggedIn} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} newId={newId} setNewId={setNewId} updateDocument={updateDocument} />} />
+          <Route path='/delete' element={<Delete loggedIn={loggedIn} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} newId={newId} setNewId={setNewId} deleteDocument={deleteDocument}  />} />
         </Routes>
       </>
     </div>

@@ -6,18 +6,18 @@ import { useEffect } from "react";
 import { TextField } from "@mui/material";
 
 type CreateProps = {
-    currentUser: any,
+    loggedIn: boolean,
     navigate: Function,
     setNewName: any,
     setNewJob: any,
     createDocument: () => void
 }
 
-export default function Create({currentUser, navigate, setNewName, setNewJob, createDocument}: CreateProps) {
+export default function Create({loggedIn, navigate, setNewName, setNewJob, createDocument}: CreateProps) {
 
     useEffect(() => {
-        if(!currentUser()) {
-            navigate()
+        if(!loggedIn) {
+            navigate("/")
         }
     })
 

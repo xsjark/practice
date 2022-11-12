@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { TextField } from "@mui/material";
 
 type DeleteProps = {
-    currentUser: any,
+    loggedIn: boolean,
     navigate: Function,
     newId: string,
     setNewId: any,
@@ -15,10 +15,10 @@ type DeleteProps = {
     deleteDocument: Function
 }
 
-export default function Delete({ currentUser, navigate, newId, setNewId, setNewName, setNewJob, deleteDocument}: DeleteProps) {
+export default function Delete({ loggedIn, navigate, newId, setNewId, setNewName, setNewJob, deleteDocument}: DeleteProps) {
     useEffect(() => {
-        if(!currentUser()) {
-            navigate()
+        if(!loggedIn) {
+            navigate("/")
         }
     })
 

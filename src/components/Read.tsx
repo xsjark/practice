@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import React, { useState, useEffect } from 'react';
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import React, { useEffect } from 'react';
+import { collection,  getDocs } from "firebase/firestore";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -13,14 +12,14 @@ import Paper from '@mui/material/Paper';
 
 
 type ReadProps = {
-    currentUser: any,
+    loggedIn: boolean,
     navigate: Function,
     setEntries: any,
     entries: any,
     db: any
 }
 
-export default function Read({ currentUser, navigate, entries, setEntries, db }: ReadProps) {
+export default function Read({ loggedIn, navigate, entries, setEntries, db }: ReadProps) {
     const fetchPost = async () => {
 
         await getDocs(collection(db, "practice_users"))
@@ -38,7 +37,7 @@ export default function Read({ currentUser, navigate, entries, setEntries, db }:
     }, [])
 
     useEffect(() => {
-        if (!currentUser()) {
+        if (!loggedIn) {
             navigate("/")
         }
     })

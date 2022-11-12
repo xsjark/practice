@@ -5,11 +5,11 @@ import Button from '@mui/material/Button';
 
 
 type HomeProps = {
-    currentUser: any,
+    loggedIn: boolean,
     logout: () => void,
 }
 
-export default function Home({ currentUser, logout }: HomeProps) {
+export default function Home({ loggedIn, logout }: HomeProps) {
     
     return (
         <div>
@@ -27,7 +27,7 @@ export default function Home({ currentUser, logout }: HomeProps) {
                 noValidate
                 autoComplete="off"
             >
-                {currentUser() 
+                {loggedIn 
                 ? <>
                 <Link to="/create" style={{ textDecoration: 'none' }}><Button variant="contained">Create DB entry</Button></Link>                
                 <Link to="/read" style={{ textDecoration: 'none' }}><Button variant="contained">Read DB entries</Button></Link>                
