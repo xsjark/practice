@@ -10,12 +10,10 @@ type DeleteProps = {
     navigate: Function,
     newId: string,
     setNewId: any,
-    setNewName: any,
-    setNewJob: any,
     deleteDocument: Function
 }
 
-export default function Delete({ loggedIn, navigate, newId, setNewId, setNewName, setNewJob, deleteDocument}: DeleteProps) {
+export default function Delete({ loggedIn, navigate, newId, setNewId,  deleteDocument}: DeleteProps) {
     useEffect(() => {
         if(!loggedIn) {
             navigate("/")

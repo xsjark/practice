@@ -139,7 +139,7 @@ function App() {
           <Route path='/create' element={<Create loggedIn={loggedIn} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} createDocument={() => createDocument()} />} />
           <Route path='/read' element={<Read loggedIn={loggedIn} navigate={() => navigate("/")} entries={entries} setEntries={setEntries} db={db} />} />
           <Route path='/update' element={<Update loggedIn={loggedIn} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} newId={newId} setNewId={setNewId} updateDocument={updateDocument} />} />
-          <Route path='/delete' element={<Delete loggedIn={loggedIn} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} newId={newId} setNewId={setNewId} deleteDocument={deleteDocument}  />} />
+          <Route path='/delete' element={<Delete loggedIn={loggedIn} navigate={() => navigate("/")} newId={newId} setNewId={setNewId} deleteDocument={deleteDocument}  />} />
         </Routes>
       </>
     </div>

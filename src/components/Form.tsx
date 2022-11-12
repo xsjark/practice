@@ -37,7 +37,7 @@ export default function BasicTextFields({title, setEmail, setPassword, handleAct
                 autoComplete="off"
             >
                 <TextField id="email" label="Email" variant="outlined" onChange={(e) => setEmail(e.target.value)}/>
-                <TextField id="password" label="Password" variant="outlined" onChange={(e) => setPassword(e.target.value)}/>
+                <TextField id="password" label="Password" variant="outlined" type="password" onChange={(e) => setPassword(e.target.value)}/>
             </Box>
             <Link to="/" style={{ textDecoration: 'none', marginRight: 5 }}><Button variant="contained">Home</Button></Link>
             <BasicButton title={title} handleAction={handleAction}/>
