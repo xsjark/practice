@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import BasicButton from './Button';
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
+import { useEffect } from 'react';
 
 
 type BasicTextFieldsProps = {
@@ -13,6 +14,12 @@ type BasicTextFieldsProps = {
 }
 
 export default function BasicTextFields({title, setEmail, setPassword, handleAction}: BasicTextFieldsProps) {
+
+    useEffect(() => {
+        setEmail("")
+        setPassword("");
+    }, [])
+    
     return (
         <div>
             <div className="heading-container">

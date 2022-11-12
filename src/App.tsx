@@ -57,6 +57,8 @@ function App() {
       createUserWithEmailAndPassword(authentication, email, password)
         .then((response) => {
           navigate("/")
+          setEmail("")
+          setPassword("")
         })
     }
     if (id === 1) {
@@ -64,6 +66,8 @@ function App() {
         signInWithEmailAndPassword(auth, email, password)
           .then((response) => {
             navigate("/")
+            setEmail("")
+            setPassword("")
           })
       } catch (err) {
         console.error(err);
@@ -121,6 +125,7 @@ function App() {
 
   return (
     <div className="App">
+      {email}{password}
       <>
         <Routes>
           <Route path='/' element={<Home currentUser={() => currentUser()} logout={() => logout()} />} />
