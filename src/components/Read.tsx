@@ -14,7 +14,7 @@ import Paper from '@mui/material/Paper';
 
 type ReadProps = {
     currentUser: any,
-    navigate: any,
+    navigate: Function,
     setEntries: any,
     entries: any,
     db: any

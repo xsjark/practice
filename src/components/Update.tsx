@@ -7,12 +7,12 @@ import { TextField } from "@mui/material";
 
 type UpdateProps = {
     currentUser: any,
-    navigate: any,
-    newId: any,
+    navigate: Function,
+    newId: string,
     setNewId: any,
     setNewName: any,
     setNewJob: any,
-    updateDocument: any
+    updateDocument: Function
 }
 
 export default function Update({ currentUser, navigate, newId, setNewId, setNewName, setNewJob, updateDocument}: UpdateProps) {

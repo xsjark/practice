@@ -7,10 +7,10 @@ import { TextField } from "@mui/material";
 
 type CreateProps = {
     currentUser: any,
-    navigate: any,
+    navigate: Function,
     setNewName: any,
     setNewJob: any,
-    createDocument: any
+    createDocument: () => void
 }
 
 export default function Create({currentUser, navigate, setNewName, setNewJob, createDocument}: CreateProps) {

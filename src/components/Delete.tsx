@@ -7,12 +7,12 @@ import { TextField } from "@mui/material";
 
 type DeleteProps = {
     currentUser: any,
-    navigate: any,
-    newId: any,
+    navigate: Function,
+    newId: string,
     setNewId: any,
     setNewName: any,
     setNewJob: any,
-    deleteDocument: any
+    deleteDocument: Function
 }
 
 export default function Delete({ currentUser, navigate, newId, setNewId, setNewName, setNewJob, deleteDocument}: DeleteProps) {

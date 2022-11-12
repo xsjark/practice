@@ -9,7 +9,7 @@ type BasicTextFieldsProps = {
     title: string,
     setEmail: any,
     setPassword: any,
-    handleAction: any
+    handleAction: () => void
 }
 
 export default function BasicTextFields({title, setEmail, setPassword, handleAction}: BasicTextFieldsProps) {

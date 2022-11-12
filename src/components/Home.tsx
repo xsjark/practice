@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 
 type HomeProps = {
     currentUser: any,
-    logout: any,
+    logout: () => void,
 }
 
 export default function Home({ currentUser, logout }: HomeProps) {

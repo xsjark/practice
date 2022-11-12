@@ -82,28 +82,22 @@ function App() {
 
   };
 
-  const createDocument = async (e: any) => {
-    e.preventDefault();
-
-    try {
-      const docRef = await addDoc(collection(db, "practice_users"), {
+  const createDocument = async () => {
+     addDoc(collection(db, "practice_users"), {
         name: newName,
         job: newJob,
-      });
-      console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
-  }
-
-  const deleteDocument = async (id: any) => {
-    deleteDoc(doc(db, "practice_users", id))
+      })
       .then(() => {
-        console.log("Entire Document has been deleted successfully.")
+        console.log("Document has been created successfully.")
       })
       .catch(error => {
         console.log(error);
       })
+  }
+
+  const deleteDocument = async (id: any) => {
+    deleteDoc(doc(db, "practice_users", id))
+      
   }
 
   const updateDocument = async (id: any) => {
@@ -126,7 +120,7 @@ function App() {
           <Route path='/' element={<Home currentUser={() => currentUser()} logout={() => logout()} />} />
           <Route path='/login' element={<Form title="Login" setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction(1)} />} />
           <Route path='/register' element={<Form title="Register" setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction(2)} />} />
-          <Route path='/create' element={<Create currentUser={() => currentUser()} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} createDocument={(e: any) => createDocument(e)} />} />
+          <Route path='/create' element={<Create currentUser={() => currentUser()} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} createDocument={() => createDocument()} />} />
           <Route path='/read' element={<Read currentUser={() => currentUser()} navigate={() => navigate("/")} entries={entries} setEntries={setEntries} db={db} />} />
           <Route path='/update' element={<Update currentUser={() => currentUser()} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} newId={newId} setNewId={setNewId} updateDocument={updateDocument} />} />
           <Route path='/delete' element={<Delete currentUser={() => currentUser()} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} newId={newId} setNewId={setNewId} deleteDocument={deleteDocument}  />} />
