@@ -44,7 +44,7 @@ export default function Update({ currentUser, navigate, newId, setNewId, setNewN
 
             </Box>
             <Link to="/" style={{ textDecoration: 'none', marginRight: 5 }}><Button variant="contained">Home</Button></Link>
-            <BasicButton title="Update" handleAction={updateDocument(newId)} />
+            <BasicButton title="Update" handleAction={() => updateDocument(newId)} />
 
         </div>
     )

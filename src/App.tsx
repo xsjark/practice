@@ -23,14 +23,14 @@ import Read from './components/Read';
 import Delete from './components/Delete';
 import Update from './components/Update';
 const firebaseConfig = {
-  apiKey: "AIzaSyBtdHOy5dVSddCRdz_mQmGgsMV2gLSsuAA",
-  authDomain: "chakra-reservation.firebaseapp.com",
-  databaseURL: "https://chakra-reservation.firebaseio.com",
-  projectId: "chakra-reservation",
-  storageBucket: "chakra-reservation.appspot.com",
-  messagingSenderId: "830300281180",
-  appId: "1:830300281180:web:65ffa24157915048554999"
-};
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID 
+}
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -88,7 +88,7 @@ function App() {
         job: newJob,
       })
       .then(() => {
-        console.log("Document has been created successfully.")
+        navigate("/")
       })
       .catch(error => {
         console.log(error);
@@ -97,6 +97,12 @@ function App() {
 
   const deleteDocument = async (id: any) => {
     deleteDoc(doc(db, "practice_users", id))
+    .then(() => {
+      navigate("/")
+    })
+    .catch(error => {
+      console.log(error);
+    })
       
   }
 
@@ -106,7 +112,7 @@ function App() {
       job: newJob
     })
       .then(() => {
-        console.log("Document has been updated successfully.")
+        navigate("/")
       })
       .catch(error => {
         console.log(error);
