@@ -15,7 +15,6 @@ import {
   addDoc,
   deleteDoc,
   updateDoc,
-  namedQuery
 } from "firebase/firestore";
 import { useEffect } from 'react';
 import { initializeApp } from "firebase/app";
@@ -23,8 +22,6 @@ import Create from './components/Create';
 import Read from './components/Read';
 import Delete from './components/Delete';
 import Update from './components/Update';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from './redux/store';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
