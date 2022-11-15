@@ -4,24 +4,39 @@ import BasicButton from './Button';
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import { set } from "../redux/setter"
 
 
 type BasicTextFieldsProps = {
     title: string,
+    email: string,
     setEmail: any,
     setPassword: any,
     handleAction: () => void
 }
 
-export default function BasicTextFields({title, setEmail, setPassword, handleAction}: BasicTextFieldsProps) {
+export default function BasicTextFields({title, email, setEmail, setPassword, handleAction}: BasicTextFieldsProps) {
 
     useEffect(() => {
         setEmail("")
         setPassword("");
     }, [])
+
+      //redux stuff
+  const  name  = useSelector((state: RootState) => state.setter.value)
+  const dispatch = useDispatch()
+
+  const submit = () => {
+    handleAction()
+    dispatch(set(email))
+  }
+
     
     return (
         <div>
+            {name}
             <div className="heading-container">
                 <h3>
                     {title} Form
@@ -40,7 +55,7 @@ export default function BasicTextFields({title, setEmail, setPassword, handleAct
                 <TextField id="password" label="Password" variant="outlined" type="password" onChange={(e) => setPassword(e.target.value)}/>
             </Box>
             <Link to="/" style={{ textDecoration: 'none', marginRight: 5 }}><Button variant="contained">Home</Button></Link>
-            <BasicButton title={title} handleAction={handleAction}/>
+            <BasicButton title={title} handleAction={() => submit()}/>
         </div>
     );
 }

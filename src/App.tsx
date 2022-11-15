@@ -129,13 +129,14 @@ function App() {
       })
   }
 
+
   return (
     <div className="App">
       <>
         <Routes>
           <Route path='/' element={<Home loggedIn={loggedIn} logout={() => logout()} />} />
-          <Route path='/login' element={<Form title="Login" setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction(1)} />} />
-          <Route path='/register' element={<Form title="Register" setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction(2)} />} />
+          <Route path='/login' element={<Form title="Login" email={email} setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction(1)} />} />
+          <Route path='/register' element={<Form title="Register" email={email} setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction(2)} />} />
           <Route path='/create' element={<Create loggedIn={loggedIn} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} createDocument={() => createDocument()} />} />
           <Route path='/read' element={<Read loggedIn={loggedIn} navigate={() => navigate("/")} entries={entries} setEntries={setEntries} db={db} />} />
           <Route path='/update' element={<Update loggedIn={loggedIn} navigate={() => navigate("/")} setNewName={setNewName} setNewJob={setNewJob} newId={newId} setNewId={setNewId} updateDocument={updateDocument} />} />
