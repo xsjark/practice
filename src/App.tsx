@@ -22,6 +22,8 @@ import Create from './components/Create';
 import Read from './components/Read';
 import Delete from './components/Delete';
 import Update from './components/Update';
+import { useSelector } from 'react-redux';
+import { RootState } from './redux/store';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -128,6 +130,8 @@ function App() {
         console.log(error);
       })
   }
+  const  name  = useSelector((state: RootState) => state.setter.value)
+
 
 
   return (

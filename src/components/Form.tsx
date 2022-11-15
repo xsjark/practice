@@ -36,7 +36,6 @@ export default function BasicTextFields({title, email, setEmail, setPassword, ha
     
     return (
         <div>
-            {name}
             <div className="heading-container">
                 <h3>
                     {title} Form
@@ -51,7 +50,7 @@ export default function BasicTextFields({title, email, setEmail, setPassword, ha
                 noValidate
                 autoComplete="off"
             >
-                <TextField id="email" label="Email" variant="outlined" onChange={(e) => setEmail(e.target.value)}/>
+                <TextField id="email" label="Email" variant="outlined" onChange={(e) => setEmail(e.target.value)} value={name && name}/>
                 <TextField id="password" label="Password" variant="outlined" type="password" onChange={(e) => setPassword(e.target.value)}/>
             </Box>
             <Link to="/" style={{ textDecoration: 'none', marginRight: 5 }}><Button variant="contained">Home</Button></Link>
