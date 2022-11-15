@@ -20,7 +20,7 @@ type BasicTextFieldsProps = {
 export default function BasicTextFields({title, email, setEmail, setPassword, handleAction}: BasicTextFieldsProps) {
 
     useEffect(() => {
-        setEmail("")
+        setEmail(name)
         setPassword("");
     }, [])
 
@@ -50,7 +50,7 @@ export default function BasicTextFields({title, email, setEmail, setPassword, ha
                 noValidate
                 autoComplete="off"
             >
-                <TextField id="email" label="Email" variant="outlined" onChange={(e) => setEmail(e.target.value)} value={name && name}/>
+                <TextField id="email" label="Email" variant="outlined" onChange={(e) => setEmail(e.target.value)} defaultValue={name ? name : ""}/>
                 <TextField id="password" label="Password" variant="outlined" type="password" onChange={(e) => setPassword(e.target.value)}/>
             </Box>
             <Link to="/" style={{ textDecoration: 'none', marginRight: 5 }}><Button variant="contained">Home</Button></Link>

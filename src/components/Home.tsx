@@ -17,7 +17,7 @@ export default function Home({ loggedIn, logout }: HomeProps) {
                 <h3>
                     Welcome
                 </h3>
-                <p style={{marginTop: 50, marginBottom: 50}}>This is my demo using React, TypeScript, Material-UI, Firebase authentication and React Routing</p>
+                <p style={{marginTop: 50, marginBottom: 50}}>This is my demo using React, TypeScript, Material-UI, Firebase authentication, React Routing and Redux Toolkit.</p>
             </div>
             <Box
                 component="form"

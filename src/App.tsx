@@ -14,7 +14,8 @@ import {
   collection,
   addDoc,
   deleteDoc,
-  updateDoc
+  updateDoc,
+  namedQuery
 } from "firebase/firestore";
 import { useEffect } from 'react';
 import { initializeApp } from "firebase/app";
@@ -22,7 +23,7 @@ import Create from './components/Create';
 import Read from './components/Read';
 import Delete from './components/Delete';
 import Update from './components/Update';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './redux/store';
 
 const firebaseConfig = {
@@ -49,7 +50,7 @@ function App() {
   const [newJob, setNewJob] = useState('');
   const [loggedIn, setLoggedIn] = useState(false)
   
-    useEffect(() => {
+  useEffect(() => {
       const listener = auth.onAuthStateChanged((authUser) => {
         if (authUser) {
           localStorage.setItem('authUser', JSON.stringify(authUser));
@@ -62,6 +63,7 @@ function App() {
   
       return () => listener?.();
     }, []);
+
 
   const navigate = useNavigate();
 
@@ -130,9 +132,6 @@ function App() {
         console.log(error);
       })
   }
-  const  name  = useSelector((state: RootState) => state.setter.value)
-
-
 
   return (
     <div className="App">
